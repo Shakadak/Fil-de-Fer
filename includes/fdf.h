@@ -6,11 +6,18 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/17 17:58:56 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/17 17:59:30 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/18 16:30:43 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
+
+typedef struct	s_grid
+{
+	int			z;
+	s_grid		*right;
+	s_grid		*down;
+}				t_grid;
 
 #endif
