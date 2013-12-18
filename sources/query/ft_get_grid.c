@@ -6,49 +6,66 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 12:50:46 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/18 14:22:31 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/18 18:40:04 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <unistd.h>
 
-int				ft_get_grid(char ***grid, int fd)
+int				ft_get_grid(t_grid **grid, int fd)
 {
-	t_list	*tmp;
+	t_grid	*tmp;
+	t_grid	*up;
 	char	*line;
-	int		nb_line;
+	int		ret;
 
-	grid = NULL;
-	tmp = NULL;
-	nb_line = 0;
-	while (get_next_line(line, fd) == 1)
+	tmp = *grid;
+	up = NULL;
+	while ((ret = get_next_line(&line, fd)) == 1)
 	{
-		nb_line++;
-		ft_lstadd(tmp, ft_list_new(ft_strsplit(line, ' ')));
-		free(line)
+		ft_fill_line(line, tmp, up);
+		free(line);
+		up = tmp;
+		tmp = tmp->down;
 	}
-	line = NULL;
-	*grid = (char **)malloc(nb_line * sizeof(char *) + 1);
-	if (*grid == NULL)
-	{
-		ft_lst_del(tmp);
-		return (-1)
-	ft_transfer_grid(grid, tmp, nb_line);
+	if (ret == -1)
+		return (-1);
+	return (0);
 }
 
-static t_list	*ft_list_new(char **content)
-{
-	t_list	*new;
+/*
+** Potentiel modification a faire au niveau des adresses envoyees.
+*/
 
-	if ((new = (t_list *)malloc(sizeof(t_list))) == NULL)
+static t_grid	*ft_grid_new(int z, t_grid *current, t_grid *up)
+{
+	t_grid	*new;
+
+	if ((new = (t_grid *)malloc(sizeof(t_grid))) == NULL)
 	{
 		perror();
 		return (NULL);
 	}
-	new->content = content;
-	new->next = NULL;
+	new->z = z;
+	new->right = NULL;
+	new->down = NULL;
+	if (current)
+		current->right = new;
+	if (up)
+		up->down = new;
 	return (new);
 }
 
-ft_transfer_grid
+static int		ft_fill_line(char *line, t_grid *current, t_grid *up)
+{
+	while (*line)
+	{
+		if (ft_is_nb(*line))
+		{
+			current = ft_grid_new(ft_getnbr(line), current, up);
+			line--;
+		}
+		line++;
+	}
+}
