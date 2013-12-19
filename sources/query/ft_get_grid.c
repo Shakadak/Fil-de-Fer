@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 12:50:46 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/18 18:40:04 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/19 11:34:24 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ static int		ft_fill_line(char *line, t_grid *current, t_grid *up)
 {
 	while (*line)
 	{
-		if (ft_is_nb(*line))
+		if (ft_iscalc(*line))
 		{
-			current = ft_grid_new(ft_getnbr(line), current, up);
-			line--;
+			current = ft_grid_new(ft_getnbr(&line), current, up);
+//			line--;
 		}
 		line++;
 	}

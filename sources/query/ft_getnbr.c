@@ -1,38 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   ft_getnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/17 18:03:21 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/19 11:39:16 by npineau          ###   ########.fr       */
+/*   Created: 2013/12/19 11:28:40 by npineau           #+#    #+#             */
+/*   Updated: 2013/12/19 11:33:53 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-
-int	main(int argc, char **argv)
+int	ft_getnbr(char **str)
 {
-	char	**grid;
-	int		fd;
+	int	res;
+	int	sign;
 
-	i = (argc == 1 ? 0 : 1);
-	while (i < argc)
+	res = 0;
+	sign = 1;
+	while (**str == '-' || **str == '+')
 	{
-		i++;
-		if (argc == 1)
-			fd = 0;
-		else if ((fd = open(argv[i], O_RDONLY)) == -1)
-			perror();
-		if (fd > -1)
-		{
-			if (ft_get_grid(&grid, fd) == -1)
-				perror();
-			ft_print_grid(&grid);
-			if (fd > 0)
-				close(fd);
-		}
+		if (**str == '-')
+			sign *= -1;
+		*str++;
 	}
-	return (0);
+	while ('0' <= **str && **str <= '9')
+	{
+		res = res * 10 + **str - '0';
+		*str++;
+	}
+	while (ft_iscalc(**str))
+		*str++;
+	return (sign * res)
 }
+
+int	ft_iscalc(char c)
+{
+	return (('0' <= *str && *str <= '9') || c == '-' || c == '+');
+}
+
