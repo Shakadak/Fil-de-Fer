@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/17 17:58:56 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/19 16:45:27 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/19 20:09:27 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,11 @@ typedef struct	s_grid
 	s_grid		*right;
 	s_grid		*down;
 }				t_grid;
+
+void	ft_print_grid(t_grid *grid);
+int		ft_travel_down(t_grid *grid, int x, int y);
+int		ft_travel_right(t_grid *grid, int x, int y);
+void	ft_draw_line(t_mlx *env, t_coo start, t_coo end);
+t_coo	ft_coo(int x, int y, int z);
 
 #endif

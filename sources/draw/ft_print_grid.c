@@ -6,10 +6,10 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/19 12:32:59 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/19 16:59:39 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/19 19:10:37 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <unistd.h>
 #include <mlx.h>
 
 void	ft_print_grid(t_grid *grid)
@@ -22,7 +22,7 @@ void	ft_print_grid(t_grid *grid)
 	ft_travel_down(grid, 0, 0);
 }
 
-int	ft_travel_down(t_grid *grid, int x, int y)
+int		ft_travel_down(t_grid *grid, int x, int y)
 {
 	if (grid->right)
 		ft_travel_right(grid, x, y);
@@ -32,7 +32,7 @@ int	ft_travel_down(t_grid *grid, int x, int y)
 		return (0);
 }
 
-ft_travel_right(t_grid *grid, int x, int y)
+int		ft_travel_right(t_grid *grid, int x, int y)
 {
 	t_coo	current;
 
