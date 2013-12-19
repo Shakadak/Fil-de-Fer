@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/19 13:13:25 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/19 13:26:41 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/19 16:22:04 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 ** ft_coo convert the given 3D coordinate into 2D one.
 */
 
-void	ft_coo(int *x, int *y, int z)
+t_coo	ft_coo(int x, int y, int z)
 {
-	int	iso_x;
-	int	iso_y;
+	t_coo	new;
 
-	iso_x = (*x - z) * 0.894427191;
-	iso_y = *y + (*x + z) * 0.4472135955;
-	*x = iso_x;
-	*y = iso_y;
+	new.x = (x - z) * 0.894427191;
+	new.y = y + (x + z) * 0.4472135955;
+	return (new)
 }

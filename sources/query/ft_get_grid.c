@@ -6,12 +6,15 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 12:50:46 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/19 11:34:24 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/19 16:59:35 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <unistd.h>
+
+static t_grid	*ft_grid_new(int z, t_grid *current, t_grid *up);
+static int		ft_fill_line(char *line, t_grid *current, t_grid *up);
 
 int				ft_get_grid(t_grid **grid, int fd)
 {
@@ -48,6 +51,7 @@ static t_grid	*ft_grid_new(int z, t_grid *current, t_grid *up)
 		return (NULL);
 	}
 	new->z = z;
+	new->exist = 1;
 	new->right = NULL;
 	new->down = NULL;
 	if (current)
@@ -59,13 +63,19 @@ static t_grid	*ft_grid_new(int z, t_grid *current, t_grid *up)
 
 static int		ft_fill_line(char *line, t_grid *current, t_grid *up)
 {
+	if (*line == 0)
+	{
+		current = ft_grid_new(0, current, up);
+		current->exist = 0;
+	}
 	while (*line)
 	{
 		if (ft_iscalc(*line))
 		{
 			current = ft_grid_new(ft_getnbr(&line), current, up);
-//			line--;
+//			line--;///////////////////////////////////////////////
 		}
 		line++;
 	}
+
 }

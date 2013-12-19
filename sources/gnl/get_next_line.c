@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/06 16:16:06 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/07 19:02:57 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/19 14:31:55 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -116,10 +116,7 @@ int		ft_cp_buff(char **line, char *buff)
 
 int		ft_init_line(char **line)
 {
-	if (*line)
-		ft_strclr(*line);
-	else
-		*line = ft_strnew(0);
+	*line = ft_strnew(0);
 	if (!*line)
 		return (-1);
 	return (0);
