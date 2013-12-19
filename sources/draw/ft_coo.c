@@ -1,17 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_draw_line.c                                     :+:      :+:    :+:   */
+/*   ft_coo.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/12/19 12:33:50 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/19 13:11:42 by npineau          ###   ########.fr       */
+/*   Created: 2013/12/19 13:13:25 by npineau           #+#    #+#             */
+/*   Updated: 2013/12/19 13:26:41 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+/*
+** ft_coo convert the given 3D coordinate into 2D one.
+*/
 
-void	ft_draw_line(int x1, int y1, int x2, y2)
+void	ft_coo(int *x, int *y, int z)
 {
+	int	iso_x;
+	int	iso_y;
+
+	iso_x = (*x - z) * 0.894427191;
+	iso_y = *y + (*x + z) * 0.4472135955;
+	*x = iso_x;
+	*y = iso_y;
 }
