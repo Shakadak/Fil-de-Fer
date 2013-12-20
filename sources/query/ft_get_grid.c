@@ -6,31 +6,32 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 12:50:46 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/19 20:57:40 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/20 18:00:55 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
 #include <unistd.h>
+#include "fdf.h"
 
 static t_grid	*ft_grid_new(int z, t_grid *current, t_grid *up);
 static int		ft_fill_line(char *line, t_grid *current, t_grid *up);
 
 int				ft_get_grid(t_grid **grid, int fd)
 {
-	t_grid	*tmp;
+	t_grid	**tmp;
 	t_grid	*up;
 	char	*line;
 	int		ret;
 
-	tmp = *grid;
+	tmp = grid;
 	up = NULL;
 	while ((ret = get_next_line(&line, fd)) == 1)
 	{
-		ft_fill_line(line, tmp, up);
+		ft_fill_line(line, up, tmp);
 		free(line);
-		up = tmp;
-		tmp = tmp->down;
+		up = *tmp;
+		tmp = &(*tmp->down);
 	}
 	if (ret == -1)
 		return (-1);
@@ -41,7 +42,7 @@ int				ft_get_grid(t_grid **grid, int fd)
 ** Potentiel modification a faire au niveau des adresses envoyees.
 */
 
-static t_grid	*ft_grid_new(int z, t_grid *current, t_grid *up)
+static t_grid	*ft_grid_new(int z, t_grid *left, t_grid *up)
 {
 	t_grid	*new;
 
@@ -54,37 +55,41 @@ static t_grid	*ft_grid_new(int z, t_grid *current, t_grid *up)
 	new->exist = 1;
 	new->right = NULL;
 	new->down = NULL;
-	if (current)
-		current->right = new;
+	if (left)
+		left->right = new;
 	if (up)
 		up->down = new;
 	return (new);
 }
 
-static int		ft_fill_line(char *line, t_grid *current, t_grid *up)
+static void		ft_fill_line(char *line, t_grid *up, t_grid **left)
 {
-	t_grid	*tmp;
+	t_grid	**tmp;
+	t_grid	*new;
 
-	tmp = NULL;
+	tmp = left;
 	if (*line == 0)
 	{
-		ft_grid_new(0, current, up);
-		current->exist = 0;
+		new = ft_grid_new(0, tmp, up);
+		new->exist = 0;
+		*tmp = new;
 	}
 	while (*line)
 	{
 		if (ft_iscalc(*line))
 		{
-			ft_grid_new(ft_getnbr(line), current, up);
-			if (tmp)
-				tmp->right = current;
+			new = ft_grid_new(ft_getnbr(line), *tmp, up);
+			if (*tmp)
+			{
+				*tmp->right = new;
+				tmp = &(*tmp->right);
+			}
+			else
+				*tmp = new;
 			if (up)
 				up = up->right;
-			tmp = current;
 //			line--;///////////////////////////////////////////////
-//
 		}
 		line++;
 	}
-
 }
