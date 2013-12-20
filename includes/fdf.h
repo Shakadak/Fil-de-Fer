@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/17 17:58:56 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/20 18:00:31 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/20 19:00:24 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ typedef struct	s_coo
 
 typedef struct	s_grid
 {
-	int			z;
-	int			exist;
-	s_grid		*right;
-	s_grid		*down;
-}				t_grid;
+	int				z;
+	int				exist;
+	struct s_grid	*right;
+	struct s_grid	*down;
+}					t_grid;
 
 typedef struct	s_mlx
 {

@@ -6,12 +6,12 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 12:50:46 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/20 18:00:55 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/20 18:59:08 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fcntl.h>
-#include <unistd.h>
+#include <stdlib.h>
 #include "fdf.h"
 
 static t_grid	*ft_grid_new(int z, t_grid *current, t_grid *up);
