@@ -6,16 +6,17 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 12:50:46 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/20 18:59:08 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/20 19:26:16 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+#include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
 #include "fdf.h"
+#include "get_next_line.h"
 
 static t_grid	*ft_grid_new(int z, t_grid *current, t_grid *up);
-static int		ft_fill_line(char *line, t_grid *current, t_grid *up);
+static void		ft_fill_line(char *line, t_grid *up, t_grid **left);
 
 int				ft_get_grid(t_grid **grid, int fd)
 {
@@ -26,12 +27,12 @@ int				ft_get_grid(t_grid **grid, int fd)
 
 	tmp = grid;
 	up = NULL;
-	while ((ret = get_next_line(&line, fd)) == 1)
+	while ((ret = get_next_line(fd, &line)) == 1)
 	{
 		ft_fill_line(line, up, tmp);
 		free(line);
 		up = *tmp;
-		tmp = &(*tmp->down);
+		tmp = &(*tmp)->down;
 	}
 	if (ret == -1)
 		return (-1);
@@ -48,7 +49,7 @@ static t_grid	*ft_grid_new(int z, t_grid *left, t_grid *up)
 
 	if ((new = (t_grid *)malloc(sizeof(t_grid))) == NULL)
 	{
-		perror();
+		perror(NULL);
 		return (NULL);
 	}
 	new->z = z;
@@ -70,7 +71,7 @@ static void		ft_fill_line(char *line, t_grid *up, t_grid **left)
 	tmp = left;
 	if (*line == 0)
 	{
-		new = ft_grid_new(0, tmp, up);
+		new = ft_grid_new(0, *tmp, up);
 		new->exist = 0;
 		*tmp = new;
 	}
@@ -78,11 +79,11 @@ static void		ft_fill_line(char *line, t_grid *up, t_grid **left)
 	{
 		if (ft_iscalc(*line))
 		{
-			new = ft_grid_new(ft_getnbr(line), *tmp, up);
+			new = ft_grid_new(ft_getnbr(&line), *tmp, up);
 			if (*tmp)
 			{
-				*tmp->right = new;
-				tmp = &(*tmp->right);
+				(*tmp)->right = new;
+				tmp = &(*tmp)->right;
 			}
 			else
 				*tmp = new;

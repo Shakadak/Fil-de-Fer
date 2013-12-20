@@ -6,11 +6,12 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/19 12:33:50 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/19 19:06:43 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/20 19:41:06 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <mlx.h>
+#include "fdf.h"
 
 void	ft_draw_line(t_mlx *env, t_coo start, t_coo end)
 {

@@ -6,13 +6,13 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/19 11:28:40 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/20 18:58:17 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/20 19:19:20 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	ft_iscalc(char c);
+#include "fdf.h"
 
-int			ft_getnbr(char **str)
+int	ft_getnbr(char **str)
 {
 	int	res;
 	int	sign;
@@ -35,7 +35,7 @@ int			ft_getnbr(char **str)
 	return (sign * res);
 }
 
-static int	ft_iscalc(char c)
+int	ft_iscalc(char c)
 {
 	return (('0' <= c && c <= '9') || c == '-' || c == '+');
 }
