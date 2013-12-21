@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/19 12:32:59 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/21 20:24:11 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/21 20:35:59 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -63,7 +63,7 @@ int		expose_hook(t_mlx *env)
 	return (0);
 }
 
-int	key_hook(int	keycode, t_mlx *env)
+int	key_hook(int	keycode)
 {
 	if (keycode == 65307)
 		exit(0);
