@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/17 18:03:21 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/20 20:01:04 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/21 14:54:12 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -20,10 +20,10 @@ int	main(int argc, char **argv)
 	int		fd;
 	int		i;
 
+	grid = NULL;
 	i = (argc == 1 ? 0 : 1);
 	while (i < argc)
 	{
-		i++;
 		if (argc == 1)
 			fd = 0;
 		else if ((fd = open(argv[i], O_RDONLY)) == -1)
@@ -36,6 +36,7 @@ int	main(int argc, char **argv)
 			if (fd > 0)
 				close(fd);
 		}
+		i++;
 	}
 	return (0);
 }

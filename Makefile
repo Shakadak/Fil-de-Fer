@@ -6,7 +6,7 @@
 #    By: npineau <npineau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/20 18:01:14 by npineau           #+#    #+#              #
-#    Updated: 2013/12/20 20:04:24 by npineau          ###   ########.fr        #
+#    Updated: 2013/12/21 13:49:09 by npineau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ $(NAME): $(LIBDIR)$(LIBFT) $(OBJ)
 $(LIBDIR)$(LIBFT):
 	make -C sources/libft/
 
-$(OBJ):
+$(OBJ): $(SRC)
 	$(CC) $(EFLAG) $(OFLAG) -c $(SRC) -I $(HEADDIR)
 
 clean:

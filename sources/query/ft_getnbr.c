@@ -6,10 +6,9 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/19 11:28:40 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/20 19:19:20 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/21 14:55:06 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "fdf.h"
 
 int	ft_getnbr(char **str)

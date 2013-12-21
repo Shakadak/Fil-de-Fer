@@ -6,10 +6,10 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/19 12:32:59 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/20 20:06:44 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/21 14:53:34 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-//#include <unistd.h>
+#include <unistd.h>
 #include <mlx.h>
 #include <stdio.h>
 #include "fdf.h"
@@ -25,6 +25,9 @@ void	ft_print_grid(t_grid *grid)
 
 int		ft_travel_down(t_mlx *env, t_grid *grid, int x, int y)
 {
+	printf("\n");
+	sleep(1);
+//	printf("%p\n", grid);
 	if (grid->right)
 		ft_travel_right(env, grid, x, y);
 	if (grid->down)
@@ -37,7 +40,8 @@ int		ft_travel_right(t_mlx *env, t_grid *grid, int x, int y)
 {
 //	t_coo	current;
 
-	printf("%d  ", grid->z);
+	printf("%d "/*, &grid = %p\tgrid->right = %p\ngrid->down = %p\n "*/, grid->z/*, grid, grid->right, grid->down*/);
+//	sleep(1);
 //	current = ft_coo(x, y, grid->z);
 //	if (grid->right)
 //		ft_draw_line(env, current, ft_coo(x + 1, y, grid->right->z));
@@ -47,7 +51,10 @@ int		ft_travel_right(t_mlx *env, t_grid *grid, int x, int y)
 //			ft_draw_line(env, current, ft_coo(x, y + 1, grid->down->z));
 //	}
 	if (grid->right)
+	{
+		//printf("grid->right = %p\n", grid->right);
 		return (ft_travel_right(env, grid->right, x + 1, y));
+	}
 	else
 		return (0);
 }

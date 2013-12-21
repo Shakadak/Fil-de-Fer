@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 12:50:46 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/20 19:26:16 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/21 14:54:55 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -81,15 +81,11 @@ static void		ft_fill_line(char *line, t_grid *up, t_grid **left)
 		{
 			new = ft_grid_new(ft_getnbr(&line), *tmp, up);
 			if (*tmp)
-			{
-				(*tmp)->right = new;
-				tmp = &(*tmp)->right;
-			}
+				tmp = &new;
 			else
 				*tmp = new;
 			if (up)
 				up = up->right;
-//			line--;///////////////////////////////////////////////
 		}
 		line++;
 	}
