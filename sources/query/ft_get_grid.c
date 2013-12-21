@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/18 12:50:46 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/21 14:54:55 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/21 19:20:54 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
@@ -65,7 +65,7 @@ static t_grid	*ft_grid_new(int z, t_grid *left, t_grid *up)
 
 static void		ft_fill_line(char *line, t_grid *up, t_grid **left)
 {
-	t_grid	**tmp;
+	 t_grid	**tmp;
 	t_grid	*new;
 
 	tmp = left;
@@ -87,6 +87,7 @@ static void		ft_fill_line(char *line, t_grid *up, t_grid **left)
 			if (up)
 				up = up->right;
 		}
-		line++;
+		else
+			line++;
 	}
 }
