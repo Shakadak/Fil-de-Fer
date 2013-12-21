@@ -6,21 +6,25 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/19 12:32:59 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/21 15:01:36 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/21 20:24:11 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
 #include <mlx.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "fdf.h"
 
 void	ft_print_grid(t_grid *grid)
 {
 	t_mlx	env;
 
+	env.grid = grid;
 	env.mlx = mlx_init();
 	env.win = mlx_new_window(env.mlx, 1920, 1200, "Fil de Fer");
-	ft_travel_down(&env, grid, 0, 0);
+	mlx_key_hook(env.win, key_hook, &env);
+	mlx_expose_hook(env.win, expose_hook, &env);
+	mlx_loop(env.mlx);
 }
 
 int		ft_travel_down(t_mlx *env, t_grid *grid, int x, int y)
@@ -51,4 +55,17 @@ int		ft_travel_right(t_mlx *env, t_grid *grid, int x, int y)
 	}
 	else
 		return (0);
+}
+
+int		expose_hook(t_mlx *env)
+{
+	ft_travel_down(env, env->grid, 0, 0);
+	return (0);
+}
+
+int	key_hook(int	keycode, t_mlx *env)
+{
+	if (keycode == 65307)
+		exit(0);
+	return (0);
 }
