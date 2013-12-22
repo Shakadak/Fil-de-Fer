@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/19 12:33:50 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/21 20:38:04 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/22 16:54:09 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>//////////////////////
@@ -36,4 +36,33 @@ void	ft_draw_line(t_mlx *env, t_coo start, t_coo end)
 		dot = i * (diff_y / diff_x);
 	}
 	printf("!draw_line\n");
+}
+
+void	ft_bresenham(t_mlx *env,  t_coo start, t_coo end)
+{
+	t_coo	d;
+	t_coo	s;
+	int		err;
+	int		e2;
+
+	d.x = (start.x - end.x >= 0 ? start.x - end.x : end.x - start.x);
+	d.y = (start.y - end.y >= 0 ? start.y - end.y : end.y - start.y);
+	s.x = (start.x < end.x ? 1 : -1);
+	s.y = (start.y < end.y ? 1 : -1);
+	err = (d.x > d.y ? d.x : -d.y) / 2;
+	while (start.x != end.x || start.y != end.y)
+	{
+		mlx_pixel_put(env->mlx, env->win, start.x, start.y, end.c);
+		e2 = err;
+		if (e2 > -d.x)
+		{
+			err -= d.y;
+			start.x += s.x;
+		}
+		if (e2 < d.y)
+		{
+			err += d.x;
+			start.y +=s.y;
+		}
+	}
 }

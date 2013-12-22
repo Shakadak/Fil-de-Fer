@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/19 12:32:59 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/21 20:35:59 by npineau          ###   ########.fr       */
+/*   Updated: 2013/12/22 16:34:50 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <unistd.h>
@@ -43,11 +43,11 @@ int		ft_travel_right(t_mlx *env, t_grid *grid, int x, int y)
 
 	current = ft_coo(x, y, grid->z);
 	if (grid->right)
-		ft_draw_line(env, current, ft_coo(x + 1, y, grid->right->z));
+		ft_bresenham(env, current, ft_coo(x + 1, y, grid->right->z));
 	if (grid->down)
 	{
 		if (grid->down->exist)
-			ft_draw_line(env, current, ft_coo(x, y + 1, grid->down->z));
+			ft_bresenham(env, current, ft_coo(x, y + 1, grid->down->z));
 	}
 	if (grid->right)
 	{
