@@ -6,7 +6,7 @@
 /*   By: npineau <npineau@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/17 17:58:56 by npineau           #+#    #+#             */
-/*   Updated: 2013/12/22 16:49:17 by npineau          ###   ########.fr       */
+/*   Updated: 2014/05/09 15:40:54 by npineau          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int		ft_get_grid(t_grid **grid, int fd);
 void	ft_print_grid(t_grid *grid);
 int		ft_travel_down(t_mlx *env, t_grid *grid, int x, int y);
 int		ft_travel_right(t_mlx *env, t_grid *grid, int x, int y);
-//void	ft_draw_line(t_mlx *env, t_coo start, t_coo end);
 t_coo	ft_coo(int x, int y, int z);
 int		expose_hook(t_mlx *env);
 int	key_hook(int	keycode);

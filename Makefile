@@ -6,7 +6,7 @@
 #    By: npineau <npineau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/20 18:01:14 by npineau           #+#    #+#              #
-#    Updated: 2014/05/09 13:11:33 by npineau          ###   ########.fr        #
+#    Updated: 2014/05/09 15:45:53 by npineau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,6 @@ HEADDIR = includes/ \
 SRC = sources/draw/ft_coo.c \
 	  sources/draw/ft_draw_line.c \
 	  sources/draw/ft_print_grid.c \
-	  \
-	  sources/gnl/get_next_line.c \
-	  \
 	  sources/query/fdf.c \
 	  sources/query/ft_get_grid.c \
 	  sources/query/ft_getnbr.c
@@ -34,9 +31,6 @@ SRC = sources/draw/ft_coo.c \
 OBJ = ft_coo.o \
 	  ft_draw_line.o \
 	  ft_print_grid.o \
-	  \
-	  get_next_line.o \
-	  \
 	  fdf.o \
 	  ft_get_grid.o \
 	  ft_getnbr.o
