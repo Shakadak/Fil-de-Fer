@@ -6,20 +6,20 @@
 #    By: npineau <npineau@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2013/12/20 18:01:14 by npineau           #+#    #+#              #
-#    Updated: 2013/12/21 13:49:09 by npineau          ###   ########.fr        #
+#    Updated: 2014/05/09 13:11:33 by npineau          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
+CC = llvm-gcc
 
 NAME = fdf
 
-LIBDIR = sources/libft/
+LIBDIR = libft/
 
 LIBFT = libft.a
 
 HEADDIR = includes/ \
-		  -I sources/libft/includes/
+		  -I libft/includes/
 
 SRC = sources/draw/ft_coo.c \
 	  sources/draw/ft_draw_line.c \
@@ -53,17 +53,17 @@ $(NAME): $(LIBDIR)$(LIBFT) $(OBJ)
 	$(CC) -o $(NAME) $(OBJ) -L $(LIBDIR) -lft $(MLXLIB)
 
 $(LIBDIR)$(LIBFT):
-	make -C sources/libft/
+	make -C libft/
 
 $(OBJ): $(SRC)
 	$(CC) $(EFLAG) $(OFLAG) -c $(SRC) -I $(HEADDIR)
 
 clean:
 	rm -f $(OBJ)
-	make -C sources/libft/ clean
+	make -C libft/ clean
 
 fclean: clean
 	rm -f $(NAME)
-	make -C sources/libft/ fclean
+	make -C libft/ fclean
 
 re: fclean all
